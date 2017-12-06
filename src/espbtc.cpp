@@ -135,8 +135,6 @@ void loop() {
   }
 
   client.stop();
-  Serial.println();
-  Serial.println("closing connection");
 
   // Process answer
   Serial.println();
@@ -191,11 +189,12 @@ void loop() {
   gmtime_r(&now, &timeinfo);
   Serial.print("Current time: ");
   Serial.print(asctime(&timeinfo));
+  Serial.println();
   //String timenow = String(hour())+":"+twoDigits(minute())+":"+twoDigits(second());
 
   // Display on OLED
   display.clear();
-  display.setFont(Nimbus_Roman_No9_L_Medium_22);
+  display.setFont(URW_Gothic_L_Book_26);
   display.setTextAlignment(TEXT_ALIGN_CENTER);
   display.drawString(128/2, 64/2, priceString);
   display.setTextAlignment(TEXT_ALIGN_RIGHT);

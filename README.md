@@ -20,8 +20,6 @@ It will then retry the next time and the error usually goes away.
 
 Initially started on Arduino IDE  but then moved to use platformio.
 
-![protophoto](https://lh3.googleusercontent.com/GRt9LnZoD8rHFXhTz15vf2pU71XCoh17dhCFR_NNDWe_8UAhNNGC6w-yoQUkA5FIlvjP8FSWcJau4aLtk04Bs3XF24WykdSkymKaI-kk7AXAiEfKYp3DKX8juWpzt5tSr2-nxTxo8yj2y5dWMSNFs2WC6KdMtKPqSim1B8VwsLoXIFuTZehj-FwhOSfe7tYHyRPjyLr7K_XaQ9hUGWMVJ9ySXoz3YH3nqpHu4_9kOOf2mc4BZuYftLI8je9SbTuH3bbjKCtDaVr5ZBPdirQ3lXFxcJ0FPVpRu8bNddV-nE1F2FNSUWtDa7CYMlZ7KNXSlXeVi4zZ3RCQo5Pcb-GMeCOJTFtw2X3OQ8iMUzMLC3CkvUXUhgHyKlzZz9yH6aze0C8mXLESEx7qwaCj265nv2zIQFrr-1RlJb4km6VhrxNigRsB3MzPypOc2Cu1cWHhdml79479NxkqIZOXx5dzhIw6SMLqT72NLI1RWcWdNpweo-arTpoOx3aFRCZI8RmGgNobRJtRoo7NvrpisnnN0riKNBBP3chsfaCqG-S3jZYrPRXxYGxBF83ezpbC3c1OI7YXd5veIyYC2FX4o1WEnincUPRQNQQVHqnspQhj1wc=w1350-h807-no)
-
 [ArduinoJson]:https://github.com/bblanchon/ArduinoJson
 [esp8266-oled-ssd1306]:https://github.com/squix78/esp8266-oled-ssd1306
 [brzo_i2c]:https://github.com/pasko-zh/brzo_i2c

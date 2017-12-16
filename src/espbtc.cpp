@@ -5,6 +5,10 @@
 #include <time.h>
 #include <TimeLib.h>
 
+#include <DNSServer.h>
+#include <ESP8266WebServer.h>
+#include <WiFiManager.h>          //https://github.com/tzapu/WiFiManager
+
 #include "SSD1306Brzo.h"
 #include "OLEDDisplayUi.h"
 #include "font.h"
@@ -48,7 +52,7 @@ void showfail(String msg) {
   Serial.print("error: ");
   Serial.println(msg);
   display.clear();
-  display.drawXbm(30, 0, icon_round_width, icon_round_height, icon_round_bits);
+  display.drawXbm(30, 0, fail_width, fail_height, fail_bits);
   display.setTextAlignment(TEXT_ALIGN_LEFT);
   display.setFont(ArialMT_Plain_10);
   display.drawString(0, 0, msg);
@@ -68,18 +72,26 @@ void setup() {
   display.drawXbm(34, 14, WiFi_Logo_width, WiFi_Logo_height, WiFi_Logo_bits);
   display.display();
 
+
+  WiFiManager wifiManager;
+  //wifiManager.resetSettings();
+  wifiManager.autoConnect("configureme");
+
   // We start by connecting to a WiFi network
   Serial.println();
   Serial.println();
   Serial.print("Connecting to ");
   Serial.println(ssid);
 
-  WiFi.begin(ssid, password);
 
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
     Serial.print(".");
   }
+
+  display.clear();
+  display.drawXbm(30, 0, ok_width, ok_height, ok_bits);
+  display.display();
 
   Serial.println("");
   Serial.println("WiFi connected");
@@ -107,8 +119,8 @@ void setup() {
 void loop() {
 
   // Connect to API
-  Serial.print("connecting to ");
-  Serial.println(host);
+  //Serial.print("connecting to ");
+  //Serial.println(host);
 
   // Use WiFiClientSecure class to create TCP connections
   if (!client.connect(host, httpsPort)) {
@@ -145,6 +157,7 @@ void loop() {
   String jsonAnswer;
   int jsonIndex;
 
+// strip unneeded stuff
   for (int i = 0; i < answer.length(); i++) {
     if (answer[i] == '{' || answer[i] == '[') {
       jsonIndex = i;
@@ -174,7 +187,7 @@ void loop() {
   JsonObject& data = root["data"];
   const char* data_base = data["base"]; // "BTC"
   const char* data_currency = data["currency"]; // "USD"
-  const char* data_amount = data["amount"]; // "10252.78"
+  const char* data_amount = data["amount"]; // "19252.78"
 
 
   Serial.print("Bitcoin price: ");

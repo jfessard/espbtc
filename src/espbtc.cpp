@@ -101,7 +101,7 @@ void setup() {
   // Synchronize time useing SNTP. This is necessary to verify that
   // the TLS certificates offered by the server are currently valid.
   Serial.print("Setting time using SNTP");
-  configTime(-8 * 3600, 0, "pool.ntp.org", "time.nist.gov");
+  configTime(-8 * 3600, 0, "time.nist.gov", "us.pool.ntp.org");
   time_t now = time(nullptr);
   while (now < 1000) {
     delay(500);
@@ -209,7 +209,7 @@ void loop() {
   display.clear();
   display.setFont(URW_Gothic_L_Book_26);
   display.setTextAlignment(TEXT_ALIGN_CENTER);
-  display.drawString(128/2, 64/2, priceString);
+  display.drawString(128/2, 60/2, priceString);
   display.setTextAlignment(TEXT_ALIGN_RIGHT);
   display.setFont(ArialMT_Plain_10);
   display.drawString(128, 0, asctime(&timeinfo));
@@ -217,6 +217,13 @@ void loop() {
 
   // Wait
   delay(1000);
+
+  static unsigned long last = millis();
+  if (millis() - last > 3600000) { //Update time every hour
+    last = millis();
+    configTime(-8 * 3600, 0, "time.nist.gov", "us.pool.ntp.org");
+  }
+
 }
 
 //TODO resync time once in a while. (every hour?)
